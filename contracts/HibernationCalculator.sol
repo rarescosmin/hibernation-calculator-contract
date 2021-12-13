@@ -28,6 +28,10 @@ contract HibernationCalculator {
         string uuid
     );
 
+    event AnimalsCleared(
+        bool deleted
+    );
+
     mapping(string => HibernationInformation) public animals;
 
     string[] public animalKeysArray;
@@ -69,6 +73,7 @@ contract HibernationCalculator {
         for (uint i = 0; i < animalKeysArray.length; i++) {
             deleteAnimal(animalKeysArray[i]);
         }
+        emit AnimalsCleared(true);
     }
 
     function initializeContract() private {
